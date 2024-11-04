@@ -43,10 +43,19 @@
         #message {
             font-weight: bold;
         }
+        #iframeContainer {
+            margin-top: 20px;
+            display: none; /* Initially hidden */
+        }
+        iframe {
+            width: 600px;
+            height: 400px;
+            border: none;
+        }
     </style>
 </head>
 <body>
-    <h2>Login To 2d car racing game</h2>
+    <h2>Login Page</h2>
     <form id="loginForm">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required>
@@ -55,13 +64,19 @@
         <button type="submit">Login</button>
     </form>
     <p>
-        <b>Dont have An Tfs account?, Use username user and pass 1234 to play for free!; more coming soon!; </b>
+        <b>Dont have an Tfs Account?, Use username user1 and pass123 as password.Also create you account at tfs website.More coming soon</b>
     <p id="message"></p>
+    
+    <!-- Container for iframe -->
+    <div id="iframeContainer">
+
+        <iframe src="https://tfsos.github.io/2dcargame/" title="2D Car Game"></iframe>
+    </div>
 
     <script>
         // Hard-coded user data for demonstration purposes
         const users = [
-            { username: "user", password: "1234" },
+            { username: "user1", password: "pass123" },
             { username: "user2", password: "pass456" }
         ];
 
@@ -73,17 +88,19 @@
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             const message = document.getElementById("message");
+            const iframeContainer = document.getElementById("iframeContainer");
             
             // Find if user exists with given username and password
             const user = users.find(u => u.username === username && u.password === password);
             
             if (user) {
-                message.textContent = "Login successful! Redirecting...";
+                message.textContent = "Login successful! Loading game...";
                 message.style.color = "green";
                 
-                // Redirect after 5 seconds
+                // Show the iframe container after 5 seconds
                 setTimeout(() => {
-                    window.location.href = "https://tfsos.github.io/2dcargame/";
+                    iframeContainer.style.display = "block"; // Show iframe
+                    message.style.display = "none"; // Hide the login message
                 }, 5000);
                 
             } else {
