@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+        }
+        label, input, button, p {
+            margin: 10px 0;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2>Login Page</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+    <p id="message"></p>
+
+    <script>
+        // Hard-coded user data for demonstration purposes
+        const users = [
+            { username: "user1", password: "pass123" },
+            { username: "user2", password: "pass456" }
+        ];
+
+        // Function to check login credentials
+        function login(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Get values from the form
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("message");
+            
+            // Find if user exists with given username and password
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                message.textContent = "Login successful! Redirecting...";
+                message.style.color = "green";
+                
+                // Redirect after 5 seconds
+                setTimeout(() => {
+                    window.location.href = "https://tfsos.github.io/2dcargame/";
+                }, 5000);
+                
+            } else {
+                message.textContent = "Invalid username or password.";
+                message.style.color = "red";
+            }
+        }
+
+        // Attach event listener to the form
+        document.getElementById("loginForm").addEventListener("submit", login);
+    </script>
+</body>
+</html>
